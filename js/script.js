@@ -6,13 +6,6 @@ var matrix = [
   [0,0,0,0,0],
 ]
 
-var emptyMatrix = [
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-]
 
 const calculateSum = (arr) => {
   return arr.reduce((total, current) => {
@@ -61,7 +54,7 @@ function CheckWin() {
 }
 
 $(".bingo-card__item").on('click', function() {
-	$(this).toggleClass('active');
+        $(this).toggleClass('active');
   var id = parseInt(this.id);
   var y = parseInt(id / 5);
   var x = parseInt(id % 5); 
@@ -69,16 +62,20 @@ $(".bingo-card__item").on('click', function() {
     matrix[y][x] = 1;
   } else {
     matrix[y][x] = 0;
-  }; 
+  };
+
   if (CheckWin()) {
-    alert("BINGO!"); 
+    alert("BINGO!");
   };
   console.log(matrix);
   
 });
 
 $('.clear-button').on('click', function(){
-	$('.bingo-card__item').removeClass('active');
+        $('.bingo-card__item').removeClass('active');
+        for (var i = 0; i <= 4; i++) {
+                matrix[i] = [0,0,0,0,0];
+    }
 });
 
 $.getJSON( "https://api.morecis.co/v1/bingo/items", function( data ) {
