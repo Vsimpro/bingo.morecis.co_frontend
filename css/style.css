@@ -155,6 +155,7 @@ footer a .icons {
   color: #5AB1BB;
   font: 30px "Caveat Brush", cursive;
 }
+
 .bingo-card__checkbox {
   display: none;
 }
@@ -174,6 +175,15 @@ footer a .icons {
   color: #00CAD9;
 }
 
+#overlay {
+  
+}
+
+#scorebox {
+  box-shadow: 6px 6px #333333;
+  padding-top: 1%;
+  padding-bottom: 3%;
+}
 
 @media screen and (max-width: 600px) {
   .main-content {

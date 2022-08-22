@@ -6,13 +6,17 @@ var matrix = [
   [0,0,0,0,0],
 ]
 
+var bingo = false;
+
+function sendData() {
+
+}
 
 const calculateSum = (arr) => {
   return arr.reduce((total, current) => {
       return total + current;
   }, 0);
 }
-
 
 function CheckWin() {
   // Horizontal check
@@ -65,22 +69,33 @@ $(".bingo-card__item").on('click', function() {
   };
 
   if (CheckWin()) {
-    alert("BINGO!");
-  };
-  console.log(matrix);
-  
+    
+    if (!bingo) {
+    $("#overlay").delay(0).toggle(200);
+    $("#scorebox").delay(0).toggle(200);    
+  }
+  bingo = true;
+  }; 
 });
 
 $('.clear-button').on('click', function(){
+    if (bingo == true) {
+        $("#overlay").delay(0).toggle(200);
+        $("#scorebox").delay(0).toggle(200);
+        bingo = false;
+      }
         $('.bingo-card__item').removeClass('active');
         for (var i = 0; i <= 4; i++) {
                 matrix[i] = [0,0,0,0,0];
     }
 });
 
-$.getJSON( "https://api.morecis.co/v1/bingo/items", function( data ) {
-  var items = [];
-  $.each( data.pool , function( key, val ) {
-    $( "#" + key ).text(val);
+function loading() {
+  $("#scorebox").delay(0).toggle(0);
+  $.getJSON("https://api.morecis.co/v1/bingo/items", function( data ) {
+    var items = [];
+    $.each( data.pool , function( key, val ) {
+      $( "#" + key ).text(val);
+    });
   });
-});
+}
